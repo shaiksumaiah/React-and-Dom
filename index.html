@@ -1,43 +1,50 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React DOM Project</title>
+  </head>
+
   <body>
     <div id="app"></div>
- 
+
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
- 
-    <script type="text/jsx">
-      const app = document.getElementById("app")
 
-      // Modified Header Component with new title
+    <script type="text/jsx">
+      const app = document.getElementById("app");
+
+      // Header component displays a title or default if none provided
       function Header({ title }) {
-        return <h1>{title ? title : "Default title"}</h1>
+        return <h1>{title ? title : "Default title"}</h1>;
       }
 
-      // Modified HomePage Component
+      // HomePage component with names list and like counter
       function HomePage() {
-        // Added one more name
+        // List of names to display
         const names = [
           "Spiderman",
           "Batman",
           "Abu sufyan",
           "Aahil arsalan"
-        ]
+        ];
 
-        // Likes start at 5
-        const [likes, setLikes] = React.useState(5)
+        // State for likes initially set to 5
+        const [likes, setLikes] = React.useState(5);
 
+        // Increment likes by 1
         function handleLike() {
-          setLikes(likes + 1)
+          setLikes(likes + 1);
         }
 
+        // Reset likes to 5
         function resetLikes() {
-          setLikes(5)
+          setLikes(5);
         }
 
         return (
           <div>
-            {/* Changed header message */}
             <Header title="Welcome to Your First React App!" />
             <ul>
               {names.map((name) => (
@@ -45,17 +52,17 @@
               ))}
             </ul>
 
-            {/* Like and Reset buttons */}
+            {/* Buttons: Like and Reset */}
             <button onClick={handleLike}>Like ({likes})</button>
             <button onClick={resetLikes}>Reset Likes</button>
 
-            {/* Special message if likes > 10 */}
+            {/* Special message if likes exceed 10 */}
             {likes > 10 && <p>You are very popular!</p>}
           </div>
-        )
+        );
       }
 
-      // Rendering HomePage
+      // Create React root and render HomePage component
       const root = ReactDOM.createRoot(app);
       root.render(<HomePage />);
     </script>
