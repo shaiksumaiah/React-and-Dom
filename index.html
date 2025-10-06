@@ -1,0 +1,63 @@
+<html>
+  <body>
+    <div id="app"></div>
+ 
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      // Modified Header Component with new title
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>
+      }
+
+      // Modified HomePage Component
+      function HomePage() {
+        // Added one more name
+        const names = [
+          "Spiderman",
+          "Batman",
+          "Abu sufyan",
+          "Aahil arsalan"
+        ]
+
+        // Likes start at 5
+        const [likes, setLikes] = React.useState(5)
+
+        function handleLike() {
+          setLikes(likes + 1)
+        }
+
+        function resetLikes() {
+          setLikes(5)
+        }
+
+        return (
+          <div>
+            {/* Changed header message */}
+            <Header title="Welcome to Your First React App!" />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+
+            {/* Like and Reset buttons */}
+            <button onClick={handleLike}>Like ({likes})</button>
+            <button onClick={resetLikes}>Reset Likes</button>
+
+            {/* Special message if likes > 10 */}
+            {likes > 10 && <p>You are very popular!</p>}
+          </div>
+        )
+      }
+
+      // Rendering HomePage
+      const root = ReactDOM.createRoot(app);
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
